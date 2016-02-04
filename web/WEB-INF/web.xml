@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <!--创建spring监听器-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!--spring监听器通过哪些上下文来获取beans.xml文件-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:beans.xml</param-value>
+    </context-param>
+
+    <!-- 如果把这个Filter发在Struts2的Filter之后，所有的请求都会被Struts2给控制，所以这个Filter就不起作用了
+      必须将这个Filter放在Struts2的Filter之前
+       -->
+   <!--<filter>-->
+        <!--<filter-name>openSessionInViewerFilter</filter-name>-->
+        <!--<filter-class>org.zttc.itat.filter.OpenSessionFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>openSessionInViewerFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping> -->
+
+    <!-- Spring中提供了
+  org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
+  这个类来实现OpenSessionInViewer的操作 -->
+    <filter>
+        <filter-name>openSessionInViewerFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>openSessionInViewerFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+</web-app>
