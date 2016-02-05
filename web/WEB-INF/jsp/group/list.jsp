@@ -23,5 +23,10 @@
   <a href="group_updateInput.action?id=${id}">更新组</a>
   <br>
 </s:iterator>
+
+<jsp:include page="/inc/pager.jsp">
+    <jsp:param value="user_list.action" name="url"/>
+    <jsp:param value="${us.totalRecord }" name="items"/>
+</jsp:include>
 </body>
 </html>
