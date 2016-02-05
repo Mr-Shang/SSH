@@ -40,9 +40,9 @@ public class GroupService implements IGroupService {
 	public void delete(int id) {
 		long count = userHibernateDao.getGroupUserCount(id);
 		if(count>0) throw new UserException("删除的组还有用户");
-/*		userHibernateDao.deleteByGroup(id);
+		//userHibernateDao.deleteByGroup(id);
 		//如果在这个位置抛出异常
-		if(id>0) throw new UserException();*/
+//		if(id>0) throw new UserException();
 		groupHibernateDao.delete(id);
 	}
 

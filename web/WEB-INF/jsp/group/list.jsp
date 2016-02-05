@@ -17,7 +17,11 @@
 </head>
 <body>
 <s:iterator value="#gl">
-  ${id}……<a href="group_show.action?cid=${id}">${name}</a><br>
+  ${id}……<a href="group_show.action?cid=${id}">${name}</a>&nbsp;
+      <a href="group_delete.action?id=${id}">删除</a> &nbsp;
+  <a href="group_addInput.action">添加组</a>&nbsp;
+  <a href="group_updateInput.action?id=${id}">更新组</a>
+  <br>
 </s:iterator>
 </body>
 </html>
